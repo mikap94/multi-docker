@@ -10,6 +10,7 @@ script:
     - docker run -e CI=true mpoghosyan/react-test npm test -- --coverage
 
 after_success:
+    # Build all images
     - docker build -t mpoghosyan/multi-client ./client
     - docker build -t mpoghosyan/multi-nginx ./nginx
     - docker build -t mpoghosyan/multi-server ./server
