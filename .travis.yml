@@ -17,7 +17,7 @@ after_success:
     - docker build -t mpoghosyan/multi-worker:latest ./worker
 
     # Login to Docker CLI
-    - docker login -e="$docker_email" -u="$docker_id" -p="$docker_password"
+    - echo "$docker_password" | docker login -u "$docker_id" --password-stdin
     
     # Push these images to dockerhub
     - docker push mpoghosyan/multi-client:latest
