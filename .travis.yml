@@ -15,7 +15,7 @@ after_success:
     - docker build -t mikayelp/multi-worker ./worker
 
     # Login to Docker CLI
-    - echo "$docker_password" | docker login -u "$docker_id" --password-stdin
+    - docker login -e="$docker_email" -u="$docker_id" -p="$docker_password"
     
     # Push these images to dockerhub
     - docker push mikayelp/multi-client
