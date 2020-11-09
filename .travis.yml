@@ -4,22 +4,22 @@ services:
     - docker
 
 before_install:
-    - docker build -t mikayelp/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t mpoghosyan/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true mikayelp/react-test npm test -- --coverage
+    - docker run -e CI=true mpoghosyan/react-test npm test -- --coverage
 
 after_success:
-    - docker build -t mikayelp/multi-client ./client
-    - docker build -t mikayelp/multi-nginx ./nginx
-    - docker build -t mikayelp/multi-server ./server
-    - docker build -t mikayelp/multi-worker ./worker
+    - docker build -t mpoghosyan/multi-client ./client
+    - docker build -t mpoghosyan/multi-nginx ./nginx
+    - docker build -t mpoghosyan/multi-server ./server
+    - docker build -t mpoghosyan/multi-worker ./worker
 
     # Login to Docker CLI
     - docker login -e="$docker_email" -u="$docker_id" -p="$docker_password"
     
     # Push these images to dockerhub
-    - docker push mikayelp/multi-client
-    - docker push mikayelp/multi-nginx
-    - docker push mikayelp/multi-server
-    - docker push mikayelp/multi-worker
+    - docker push mpoghosyan/multi-client
+    - docker push mpoghosyan/multi-nginx
+    - docker push mpoghosyan/multi-server
+    - docker push mpoghosyan/multi-worker
