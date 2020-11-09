@@ -11,16 +11,16 @@ script:
 
 after_success:
     # Build all images
-    - docker build -t mpoghosyan/multi-client ./client
-    - docker build -t mpoghosyan/multi-nginx ./nginx
-    - docker build -t mpoghosyan/multi-server ./server
-    - docker build -t mpoghosyan/multi-worker ./worker
+    - docker build -t mpoghosyan/multi-client:latest ./client
+    - docker build -t mpoghosyan/multi-nginx:latest ./nginx
+    - docker build -t mpoghosyan/multi-server:latest ./server
+    - docker build -t mpoghosyan/multi-worker:latest ./worker
 
     # Login to Docker CLI
     - docker login -e="$docker_email" -u="$docker_id" -p="$docker_password"
     
     # Push these images to dockerhub
-    - docker push mpoghosyan/multi-client
-    - docker push mpoghosyan/multi-nginx
-    - docker push mpoghosyan/multi-server
-    - docker push mpoghosyan/multi-worker
+    - docker push mpoghosyan/multi-client:latest
+    - docker push mpoghosyan/multi-nginx:latest
+    - docker push mpoghosyan/multi-server:latest
+    - docker push mpoghosyan/multi-worker:latest
