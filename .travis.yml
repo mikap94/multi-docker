@@ -24,3 +24,18 @@ after_success:
     - docker push mpoghosyan/multi-nginx:latest
     - docker push mpoghosyan/multi-server:latest
     - docker push mpoghosyan/multi-worker:latest
+
+# access_key_id: $AWS_ACCESS_KEY
+# secret_access_key: $AWS_SECRET_KEY
+
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multi-docker
+    env: MultiDocker2-env
+    bucket_name: elasticbeanstalk-us-east-2-897526472504
+    bucket_path: docker-multi
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
